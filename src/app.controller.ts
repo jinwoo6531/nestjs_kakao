@@ -6,8 +6,12 @@ import {
   Redirect,
   Post,
   Body,
+  Res,
+  Req,
 } from '@nestjs/common';
-import { AppService } from './app.service';
+import { AppService, MyService } from './app.service';
+import { Request, Response } from 'express';
+import { join } from 'path';
 
 interface PostData {
   data: string;
@@ -15,7 +19,10 @@ interface PostData {
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(
+    private readonly appService: AppService,
+    private readonly myService: MyService,
+  ) {}
 
   @Get()
   getHello(): string {
@@ -69,5 +76,20 @@ export class AppController {
   @Header('Content-Type', 'application/json')
   postData2(@Body('data') postBody: string): PostData {
     return { data: postBody };
+  }
+  @Get('myService')
+  getMyService(): string {
+    this.myService.setData('Hi ? My Service !');
+    return this.myService.getData();
+  }
+  @Get('myService2')
+  getMyService2(): string {
+    return this.myService.getData();
+  }
+
+  // Static File(HTML)
+  @Get('reactjs*') // - 대응 가능한 주소 : /reactjs /reactjs/ /reactjs/1 /reactjs/2
+  getReact(@Req() req: Request, @Res() res: Response): void {
+    return res.sendFile(join(__dirname, '../views/react/index.html'));
   }
 }

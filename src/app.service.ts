@@ -10,3 +10,17 @@ export class AppService {
     return `data : getDynamicPathWithservice(${data})`;
   }
 }
+
+@Injectable()
+export class MyService {
+  data: string;
+
+  getData(): string {
+    return this.data;
+  }
+
+  setData(data: string): void {
+    this.data = data;
+    return;
+  }
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NestJS With ReactJS(CDN)</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/react-router-dom@5.2.0/umd/react-router-dom.js"></script>
+    <script crossorigin src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script type="text/babel">
+        const { BrowserRouter, Route, Switch, Link } = ReactRouterDOM;
+        const { useState, useEffect } = React;
+        const MainPage = (props) => {
+            return (
+                <div>
+                    <h2>ReactJS</h2>
+                    <p>NestJS + ReactJS(CDN)</p>
+                    <p>{props.data}</p>
+                </div>
+            );
+        }
+        const MainApp = (props) => {
+            return (
+                <BrowserRouter>
+                    <Switch>
+                        <Route path='/reactjs/2'><MainPage data='2' /></Route>
+                        <Route path='/reactjs/1'><MainPage data='1' /></Route>
+                        <Route path='/reactjs/'><MainPage data='/' /></Route>
+                        <Route path='/'><MainPage data='data'/></Route>
+                    </Switch>
+                </BrowserRouter>
+            );
+        }
+        ReactDOM.render(<MainApp />, document.getElementById('root'));
+    </script>
+</body>
+</html>
