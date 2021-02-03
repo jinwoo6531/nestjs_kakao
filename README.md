@@ -3,6 +3,6 @@
 # Nest 네스트 with TS
 
 ### 생성 및 실행하기
-> npm i -g @nestjs/cli
-> nest n projectName
-> npm run start || npm run start:dev
+> npm i -g @nestjs/cli  
+> nest n projectName  
+> npm run start || npm run start:dev  
