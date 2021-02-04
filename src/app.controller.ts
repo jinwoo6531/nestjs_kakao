@@ -77,6 +77,8 @@ export class AppController {
   postData2(@Body('data') postBody: string): PostData {
     return { data: postBody };
   }
+
+  // Provider
   @Get('myService')
   getMyService(): string {
     this.myService.setData('Hi ? My Service !');
