@@ -117,9 +117,9 @@ export class AppController {
   @Header('Content-Type', 'text/html')
   kakaoLoginLogic(@Res() res): void {
     const _hostName = 'https://kauth.kakao.com';
-    const _restApiKey = '';
+    const _restApiKey = ''; // * 입력필요
     // 카카오 로그인 RedirectURI 등록
-    const _redirectUrl = 'http://192.168.0.3:3000/kakaoLoginLogicRedirect';
+    const _redirectUrl = 'http://127.0.0.1:3000/kakaoLoginLogicRedirect';
     const url = `${_hostName}/oauth/authorize?client_id=${_restApiKey}&redirect_uri=${_redirectUrl}&response_type=code`;
     return res.redirect(url);
   }
@@ -127,9 +127,9 @@ export class AppController {
   @Header('Content-Type', 'text/html')
   kakaoLoginLogicRedirect(@Query() qs, @Res() res): void {
     console.log(qs.code);
-    const _client_id = '';
-    const _redirect_uri = 'http://192.168.0.3:3000/kakaoLoginLogicRedirect';
-    const _hostName = `https://kauth.kakao.com/oauth/token?grant_type=authorization_code&client_id=${_client_id}&redirect_uri=${_redirect_uri}&code=${qs.code}`;
+    const _restApiKey = ''; // * 입력필요
+    const _redirect_uri = 'http://127.0.0.1:3000/kakaoLoginLogicRedirect';
+    const _hostName = `https://kauth.kakao.com/oauth/token?grant_type=authorization_code&client_id=${_restApiKey}&redirect_uri=${_redirect_uri}&code=${qs.code}`;
     const _headers = {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
