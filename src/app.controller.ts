@@ -111,6 +111,7 @@ export class AppController {
         <form action="/kakaoLogout" method="GET">
           <input type="submit" value="카카오로그아웃 및 연결 끊기" />
         </form>
+      </div>
     `;
   }
   @Get('kakaoLoginLogic')
