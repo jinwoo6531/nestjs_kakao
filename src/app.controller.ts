@@ -91,6 +91,8 @@ export class AppController {
     return this.myService.getData();
   }
 
+
+  //카카오 url 수정해야함
   // Static File(HTML)
   @Get('reactjs*') // - 대응 가능한 주소 : /reactjs /reactjs/ /reactjs/1 /reactjs/2
   getReact(@Req() req: Request, @Res() res: Response): void {
