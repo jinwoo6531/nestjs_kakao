@@ -59,5 +59,6 @@ export class KakaoLogin {
       Authorization: `bearer ${this.accessToken}`,
     };
     return await this.http.post(_url, '', { headers: _header }).toPromise();
+    //test
   }
 }
