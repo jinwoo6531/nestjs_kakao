@@ -47,6 +47,7 @@ export class KakaoLogin {
     return true;
   }
   async logout(): Promise<any> {
+    console.log('들어옴1');
     const _url = 'https://kapi.kakao.com/v1/user/logout';
     const _header = {
       Authorization: `bearer ${this.accessToken}`,
@@ -54,11 +55,17 @@ export class KakaoLogin {
     return await this.http.post(_url, '', { headers: _header }).toPromise();
   }
   async deleteLog(): Promise<any> {
-    const _url = 'https://kapi.kakao.com/v1/user/unlink';
-    const _header = {
-      Authorization: `bearer ${this.accessToken}`,
-    };
-    return await this.http.post(_url, '', { headers: _header }).toPromise();
+    try {
+      console.log('들어옴');
+      const _url = 'https://kapi.kakao.com/v1/user/unlink';
+      const _header = {
+        Authorization: `bearer ${this.accessToken}`,
+      };
+      return await this.http.post(_url, '', { headers: _header }).toPromise();
+    } catch (error) {
+      console.error(error);
+    }
+
     //test
   }
 }

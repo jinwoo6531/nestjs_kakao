@@ -91,7 +91,6 @@ export class AppController {
     return this.myService.getData();
   }
 
-
   //카카오 url 수정해야함
   // Static File(HTML)
   @Get('reactjs*') // - 대응 가능한 주소 : /reactjs /reactjs/ /reactjs/1 /reactjs/2
@@ -120,7 +119,7 @@ export class AppController {
   @Header('Content-Type', 'text/html')
   kakaoLoginLogic(@Res() res): void {
     const _hostName = 'https://kauth.kakao.com';
-    const _restApiKey = ''; // * 입력필요
+    const _restApiKey = '55827140fbd582b7f5a42d6e1be603ab'; // * 입력필요
     // 카카오 로그인 RedirectURI 등록
     const _redirectUrl = 'http://127.0.0.1:3000/kakaoLoginLogicRedirect';
     const url = `${_hostName}/oauth/authorize?client_id=${_restApiKey}&redirect_uri=${_redirectUrl}&response_type=code`;
@@ -130,7 +129,7 @@ export class AppController {
   @Header('Content-Type', 'text/html')
   kakaoLoginLogicRedirect(@Query() qs, @Res() res): void {
     console.log(qs.code);
-    const _restApiKey = ''; // * 입력필요
+    const _restApiKey = '55827140fbd582b7f5a42d6e1be603ab'; // * 입력필요
     const _redirect_uri = 'http://127.0.0.1:3000/kakaoLoginLogicRedirect';
     const _hostName = `https://kauth.kakao.com/oauth/token?grant_type=authorization_code&client_id=${_restApiKey}&redirect_uri=${_redirect_uri}&code=${qs.code}`;
     const _headers = {
@@ -164,6 +163,7 @@ export class AppController {
     this.kakaoLogin
       .deleteLog()
       .then((e) => {
+        console.log('들어오나');
         return res.send(`
           <div>
             <h2>로그아웃 완료(연결끊기)</h2>
@@ -172,10 +172,10 @@ export class AppController {
         `);
       })
       .catch((e) => {
-        console.log(e);
+        console.error(e);
         return res.send('DELETE ERROR');
       });
-    // // 로그아웃 -(2) 토큰 만료
+    // 로그아웃 -(2) 토큰 만료
     // this.kakaoLogin
     //   .logout()
     //   .then((e) => {
